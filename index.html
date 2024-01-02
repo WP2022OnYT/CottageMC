@@ -48,7 +48,7 @@
 
 <body>
     <div class="container">
-        <div class="header">CottageMC SMP</div>
+        <div class="header"><a href="/CottageMC/index.html">CottageMC SMP</a></div>
         <div class="status" id="server-status">Loading...</div>
         <div class="info" id="server-info">
             IP Address: 78.108.218.17
@@ -57,57 +57,57 @@
         </div>
     </div>
     <script>
-      function updateServerStatus(ip) {
-          var statusElement = document.getElementById('server-status');
-          var infoElement = document.getElementById('server-info');
+        function updateServerStatus(ip) {
+            var statusElement = document.getElementById('server-status');
+            var infoElement = document.getElementById('server-info');
 
-          var xhr = new XMLHttpRequest();
-          xhr.open('GET', `https://mcapi.us/server/status?ip=${ip}&port=25565`, true);
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', `https://mcapi.us/server/status?ip=${ip}&port=25565`, true);
 
-          xhr.onload = function () {
-              if (xhr.status === 200) {
-                  var jsonResponse = JSON.parse(xhr.responseText);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var jsonResponse = JSON.parse(xhr.responseText);
 
-                  if (jsonResponse.online) {
-                      var playersOnline = jsonResponse.players.now;
-                      var maxPlayers = jsonResponse.players.max;
+                    if (jsonResponse.online) {
+                        var playersOnline = jsonResponse.players.now;
+                        var maxPlayers = jsonResponse.players.max;
 
-                      statusElement.innerHTML = 'Online: ' + playersOnline + ' players | ' + (jsonResponse.server.name || 'N/A');
-                      infoElement.innerHTML = 'IP Address: ' + ip +
-                          '<br>Java port: Default (leave blank)' +
-                          '<br>Bedrock port: 19132';
-                  } else {
-                      statusElement.innerHTML = 'Offline';
-                      infoElement.innerHTML = 'IP Address: ' + ip +
-                          '<br>Java port: Default (leave blank)' +
-                          '<br>Bedrock port: 19132';
-                  }
-              } else {
-                  statusElement.innerHTML = 'Error';
-                  infoElement.innerHTML = 'IP Address: ' + ip +
-                      '<br>Java port: Default (leave blank)' +
-                      '<br>Bedrock port: 19132';
-              }
-          };
+                        statusElement.innerHTML = 'Online: ' + playersOnline + ' players | ' + (jsonResponse.server.name || 'N/A');
+                        infoElement.innerHTML = 'IP Address: ' + ip +
+                            '<br>Java port: Default (leave blank)' +
+                            '<br>Bedrock port: 19132';
+                    } else {
+                        statusElement.innerHTML = 'Offline';
+                        infoElement.innerHTML = 'IP Address: ' + ip +
+                            '<br>Java port: Default (leave blank)' +
+                            '<br>Bedrock port: 19132';
+                    }
+                } else {
+                    statusElement.innerHTML = 'Error';
+                    infoElement.innerHTML = 'IP Address: ' + ip +
+                        '<br>Java port: Default (leave blank)' +
+                        '<br>Bedrock port: 19132';
+                }
+            };
 
-          xhr.onerror = function () {
-              statusElement.innerHTML = 'Error';
-              infoElement.innerHTML = 'IP Address: ' + ip +
-                  '<br>Java port: Default (leave blank)' +
-                  '<br>Bedrock port: 19132';
-          };
+            xhr.onerror = function () {
+                statusElement.innerHTML = 'Error';
+                infoElement.innerHTML = 'IP Address: ' + ip +
+                    '<br>Java port: Default (leave blank)' +
+                    '<br>Bedrock port: 19132';
+            };
 
-          xhr.send();
-      }
+            xhr.send();
+        }
 
-      // Initial server status check
-      updateServerStatus('78.108.218.17');
+        // Initial server status check
+        updateServerStatus('78.108.218.17');
 
-      // Update server status every 5 seconds
-      setInterval(function () {
-          updateServerStatus('78.108.218.17');
-      }, 5000);
-  </script>
+        // Update server status every 5 seconds
+        setInterval(function () {
+            updateServerStatus('78.108.218.17');
+        }, 5000);
+    </script>
     <footer>
         <div class="container">
             <a href="/CottageMC/contact.html">About</a> |
