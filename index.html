@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,72 +9,118 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #000000;
-            color: white;
+            color: rgb(219, 196, 196);
             margin: 0;
             padding: 0;
         }
+
         .container {
             max-width: 960px;
             margin: 0 auto;
             padding: 20px;
         }
+
         .header {
             text-align: center;
             font-size: 32px;
             margin-bottom: 20px;
         }
+
         .status {
             text-align: center;
             font-size: 24px;
             margin-bottom: 20px;
         }
+
         .info {
             font-size: 18px;
             margin-bottom: 20px;
+            white-space: pre-line;
         }
+
         .links {
             text-align: center;
             font-size: 18px;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">CottageMC SMP</div>
-        <div class="status">
-            Server Status: <span id="server-status">Loading...</span>
-        </div>
-        <div class="info">
+        <div class="status" id="server-status">Loading...</div>
+        <div class="info" id="server-info">
             IP Address: 78.108.218.17
-            <br>
-            Java port: Defult (leave blank)
-            <br>
-            Bedrock port: 19132
+            <br> Java port: Default (leave blank)
+            <br> Bedrock port: 19132
+            <br> Players Online: Loading...
+            <br> Minecraft Version: Loading...
         </div>
         <div class="links">
-            <a href="/contact.html">About</a> | 
+            <a href="/contact.html">About</a> |
             <a href="/rules.html">Rules</a>
         </div>
     </div>
     <script>
-      function getMinecraftStatus(ip) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', `https://api.mcsrvstat.us/${ip}`, true);
-        xhr.onload = function () {
-           if (this.status == 200) {
-             var jsonResponse = JSON.parse(this.responseText);
-             console.log('Server is online');
-             console.log(`Number of players online: ${jsonResponse.players.online}`);
-           } else {
-             console.log('Server is offline');
-           }
-        };
-        xhr.send();
-       }
-       
-       setInterval(function() {
-        getMinecraftStatus('78.108.218.17');
-    }, 5000);
+        function updateServerStatus(ip) {
+            var statusElement = document.getElementById('server-status');
+            var infoElement = document.getElementById('server-info');
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', `https://mcapi.us/server/status?ip=${ip}&port=25565`, true);
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var jsonResponse = JSON.parse(xhr.responseText);
+
+                    if (jsonResponse.online) {
+                        var playersOnline = jsonResponse.players.now;
+                        var maxPlayers = jsonResponse.players.max;
+
+                        statusElement.innerHTML = 'Online - ' + playersOnline + ' players online';
+                        infoElement.innerHTML = 'IP Address: ' + ip +
+                            '<br>Java port: Default (leave blank)' +
+                            '<br>Bedrock port: 19132' +
+                            '<br>Players Online: ' + playersOnline + ' out of ' + maxPlayers +
+                            '<br>Minecraft Version: ' + (jsonResponse.server.name || 'N/A');
+                    } else {
+                        statusElement.innerHTML = 'Offline';
+                        infoElement.innerHTML = 'IP Address: ' + ip +
+                            '<br>Java port: Default (leave blank)' +
+                            '<br>Bedrock port: 19132' +
+                            '<br>Players Online: N/A (Server Offline)' +
+                            '<br>Minecraft Version: N/A (Server Offline)';
+                    }
+                } else {
+                    statusElement.innerHTML = 'Error: Could not fetch server status (HTTP ' + xhr.status + ')';
+                    infoElement.innerHTML = 'IP Address: ' + ip +
+                        '<br>Java port: Default (leave blank)' +
+                        '<br>Bedrock port: 19132' +
+                        '<br>Players Online: Error' +
+                        '<br>Minecraft Version: Error';
+                }
+            };
+
+            xhr.onerror = function () {
+                statusElement.innerHTML = 'Error: Could not connect to the server';
+                infoElement.innerHTML = 'IP Address: ' + ip +
+                    '<br>Java port: Default (leave blank)' +
+                    '<br>Bedrock port: 19132' +
+                    '<br>Players Online: Error' +
+                    '<br>Minecraft Version: Error';
+            };
+
+            xhr.send();
+        }
+
+        // Initial server status check
+        updateServerStatus('78.108.218.17');
+
+        // Update server status every 5 seconds
+        setInterval(function () {
+            updateServerStatus('78.108.218.17');
+        }, 5000);
     </script>
 </body>
+
 </html>
