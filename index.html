@@ -53,8 +53,6 @@
             IP Address: 78.108.218.17
             <br> Java port: Default (leave blank)
             <br> Bedrock port: 19132
-            <br> Players Online: Loading...
-            <br> Minecraft Version: Loading...
         </div>
         <div class="links">
             <a href="/contact.html">About</a> |
@@ -77,37 +75,29 @@
                         var playersOnline = jsonResponse.players.now;
                         var maxPlayers = jsonResponse.players.max;
 
-                        statusElement.innerHTML = 'Online - ' + playersOnline + ' players online';
+                        statusElement.innerHTML = 'Online - ' + playersOnline + ' players | ' + (jsonResponse.server.name || 'N/A');
                         infoElement.innerHTML = 'IP Address: ' + ip +
                             '<br>Java port: Default (leave blank)' +
-                            '<br>Bedrock port: 19132' +
-                            '<br>Players Online: ' + playersOnline + ' out of ' + maxPlayers +
-                            '<br>Minecraft Version: ' + (jsonResponse.server.name || 'N/A');
+                            '<br>Bedrock port: 19132';
                     } else {
                         statusElement.innerHTML = 'Offline';
                         infoElement.innerHTML = 'IP Address: ' + ip +
                             '<br>Java port: Default (leave blank)' +
-                            '<br>Bedrock port: 19132' +
-                            '<br>Players Online: N/A (Server Offline)' +
-                            '<br>Minecraft Version: N/A (Server Offline)';
+                            '<br>Bedrock port: 19132';
                     }
                 } else {
-                    statusElement.innerHTML = 'Error: Could not fetch server status (HTTP ' + xhr.status + ')';
+                    statusElement.innerHTML = 'Error';
                     infoElement.innerHTML = 'IP Address: ' + ip +
                         '<br>Java port: Default (leave blank)' +
-                        '<br>Bedrock port: 19132' +
-                        '<br>Players Online: Error' +
-                        '<br>Minecraft Version: Error';
+                        '<br>Bedrock port: 19132';
                 }
             };
 
             xhr.onerror = function () {
-                statusElement.innerHTML = 'Error: Could not connect to the server';
+                statusElement.innerHTML = 'Error';
                 infoElement.innerHTML = 'IP Address: ' + ip +
                     '<br>Java port: Default (leave blank)' +
-                    '<br>Bedrock port: 19132' +
-                    '<br>Players Online: Error' +
-                    '<br>Minecraft Version: Error';
+                    '<br>Bedrock port: 19132';
             };
 
             xhr.send();
