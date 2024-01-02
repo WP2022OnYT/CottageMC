@@ -1,13 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>CottageMC | Offical site</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CottageMC SMP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .status {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .info {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .links {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-
+    <div class="container">
+        <div class="header">CottageMC SMP</div>
+        <div class="status">
+            Server Status: <span id="server-status">Loading...</span>
+        </div>
+        <div class="info">
+            IP Address: 78.108.218.17
+            <br>
+            Java port: Defult (leave blank)
+            <br>
+            Bedrock port: 19132
+        </div>
+        <div class="links">
+            <a href="/contact.html">About</a> | 
+            <a href="/rules.html">Rules</a>
+        </div>
+    </div>
+    <script>
+      function getMinecraftStatus(ip) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', `https://api.mcsrvstat.us/${ip}`, true);
+        xhr.onload = function () {
+           if (this.status == 200) {
+             var jsonResponse = JSON.parse(this.responseText);
+             console.log('Server is online');
+             console.log(`Number of players online: ${jsonResponse.players.online}`);
+           } else {
+             console.log('Server is offline');
+           }
+        };
+        xhr.send();
+       }
+       
+       setInterval(function() {
+        getMinecraftStatus('78.108.218.17');
+    }, 5000);
+    </script>
 </body>
 </html>
