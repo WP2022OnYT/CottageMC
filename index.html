@@ -53,7 +53,7 @@
         <div class="status" id="server-status">Loading...</div>
         <div class="info" id="server-info">
             IP Address: 78.108.218.17
-            <br> Java port: Default (leave blank)
+            <br> Java port: Defult
             <br> Bedrock port: 19132
         </div>
     </div>
@@ -75,18 +75,18 @@
 
                         statusElement.innerHTML = 'Online: ' + playersOnline + ' players | ' + (jsonResponse.server.name || 'N/A');
                         infoElement.innerHTML = 'IP Address: ' + ip +
-                            '<br>Java port: Default (leave blank)' +
+                            '<br>Java port: Defult' +
                             '<br>Bedrock port: 19132';
                     } else {
                         statusElement.innerHTML = 'Offline';
                         infoElement.innerHTML = 'IP Address: ' + ip +
-                            '<br>Java port: Default (leave blank)' +
+                            '<br>Java port: Defult' +
                             '<br>Bedrock port: 19132';
                     }
                 } else {
                     statusElement.innerHTML = 'Error';
                     infoElement.innerHTML = 'IP Address: ' + ip +
-                        '<br>Java port: Default (leave blank)' +
+                        '<br>Java port: Defult' +
                         '<br>Bedrock port: 19132';
                 }
             };
@@ -94,7 +94,7 @@
             xhr.onerror = function () {
                 statusElement.innerHTML = 'Error';
                 infoElement.innerHTML = 'IP Address: ' + ip +
-                    '<br>Java port: Default (leave blank)' +
+                    '<br>Java port: Defult' +
                     '<br>Bedrock port: 19132';
             };
 
@@ -107,7 +107,7 @@
         // Update server status every 5 seconds
         setInterval(function () {
             updateServerStatus('78.108.218.17');
-        }, 5000);
+        }, 15000);
     </script>
     <footer>
         <div class="container">
