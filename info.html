@@ -20,21 +20,34 @@
             padding: 20px;
         }
 
-        .header {
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background-color: #333; /* Add a background color to the header */
+            padding: 10px;
             text-align: center;
-            font-size: 40px;
+            z-index: 1000; /* Set a higher z-index to keep the header on top */
+        }
+
+        .header {
+            font-size: 24px; /* Reduce font size for the header */
             margin-bottom: 20px;
+            color: white; /* Set text color for the header */
         }
 
         .stats {
             font-size: 18px;
-            margin-top: 20px;
+            margin-top: 80px; /* Adjust margin to make space for the fixed header */
         }
 
         footer {
             text-align: center;
-            font-size: 30px;
+            font-size: 16px; /* Adjust font size for the footer */
             margin-top: 20px;
+            background-color: #333; /* Add a background color to the footer */
+            padding: 10px;
+            color: white; /* Set text color for the footer */
         }
     </style>
     <link rel="icon" type="image/ico" href="icon.ico">
