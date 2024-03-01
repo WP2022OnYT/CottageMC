@@ -53,8 +53,8 @@
         <div class="status" id="server-status">Loading...</div>
         <div class="info" id="server-info">
             IP Address: 78.108.218.17
-            <br> Java port: Defult
-            <br> Bedrock port: 19132
+            <br> Java port: 25565 (defult)
+            <br> Bedrock port: 19132 (defult)
         </div>
     </div>
     <script>
@@ -75,38 +75,38 @@
 
                         statusElement.innerHTML = 'Online: ' + playersOnline + ' players | ' + (jsonResponse.server.name || 'N/A');
                         infoElement.innerHTML = 'IP Address: ' + ip +
-                            '<br>Java port: Defult' +
-                            '<br>Bedrock port: 19132';
+                            '<br>Java port: 25565 (defult)' +
+                            '<br>Bedrock port: 19132 (defult)';
                     } else {
                         statusElement.innerHTML = 'Offline';
                         infoElement.innerHTML = 'IP Address: ' + ip +
-                            '<br>Java port: Defult' +
-                            '<br>Bedrock port: 19132';
+                            '<br>Java port:  25565 (defult)' +
+                            '<br>Bedrock port: 19132 (defult)';
                     }
                 } else {
                     statusElement.innerHTML = 'Error';
                     infoElement.innerHTML = 'IP Address: ' + ip +
-                        '<br>Java port: Defult' +
-                        '<br>Bedrock port: 19132';
+                        '<br>Java port: 25565 (defult)' +
+                        '<br>Bedrock port: 19132 (defult)';
                 }
             };
 
             xhr.onerror = function () {
                 statusElement.innerHTML = 'Error';
                 infoElement.innerHTML = 'IP Address: ' + ip +
-                    '<br>Java port: Defult' +
-                    '<br>Bedrock port: 19132';
+                    '<br>Java port: 25565 (defult)' +
+                    '<br>Bedrock port: 19132 (defult)';
             };
 
             xhr.send();
         }
 
         // Initial server status check
-        updateServerStatus('78.108.218.17');
+        updateServerStatus('mc.thecottagesmp.com');
 
         // Update server status every 5 seconds
         setInterval(function () {
-            updateServerStatus('78.108.218.17');
+            updateServerStatus('mc.thecottagesmp.com');
         }, 15000);
     </script>
     <footer>
