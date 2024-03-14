@@ -24,81 +24,72 @@
                         <a href="/map.html">Server map</a>
                     </div>
                 </div>
-                <div class="dropdown">
-                    <span>Dark mode:</span>
-                    <select id="mode-selector" onchange="changeMode(this.value)">
-                        <option value="dark">Enabled</option>
-                        <option value="light">Disabled</option>
-                    </select>
-                </div>
             </div>
         </header>
 
-        <div class="container">
-            <br>
-            <div class="status" id="server-status">Loading...</div>
-            <div class="info" id="server-info">
-                IP Address: mc.thecottagesmp.com
-                <br> Java port: 25565 (default)
-                <br> Bedrock port: 19132 (default)
-            </div>
+<body>
+    <div class="container">
+        <br>
+        <div class="status" id="server-status">Loading...</div>
+        <div class="info" id="server-info">
+            IP Address: mc.thecottagesmp.com
+            <br> Java port: 25565 (default)
+            <br> Bedrock port: 19132 (default)
         </div>
-        <script>
-            function updateServerStatus(ip) {
-                var statusElement = document.getElementById('server-status');
-                var infoElement = document.getElementById('server-info');
+    </div>
+    <script>
+        function updateServerStatus(ip) {
+            var statusElement = document.getElementById('server-status');
+            var infoElement = document.getElementById('server-info');
 
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', `https://mcapi.us/server/status?ip=${ip}&port=25565`, true);
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', `https://mcapi.us/server/status?ip=${ip}&port=25565`, true);
 
-                xhr.onload = function () {
-                    if (xhr.status === 200) {
-                        var jsonResponse = JSON.parse(xhr.responseText);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var jsonResponse = JSON.parse(xhr.responseText);
 
-                        if (jsonResponse.online) {
-                            var playersOnline = jsonResponse.players.now;
-                            var maxPlayers = jsonResponse.players.max;
+                    if (jsonResponse.online) {
+                        var playersOnline = jsonResponse.players.now;
+                        var maxPlayers = jsonResponse.players.max;
 
-                            statusElement.innerHTML = 'Online: ' + playersOnline + ' players | ' + (jsonResponse.server.name || 'N/A');
-                            infoElement.innerHTML = 'IP Address: ' + ip +
-                                '<br>Java port: 25565 (default)' +
-                                '<br>Bedrock port: 19132 (default)';
-                        } else {
-                            statusElement.innerHTML = 'Offline';
-                            infoElement.innerHTML = 'IP Address: ' + ip +
-                                '<br>Java port:  25565 (default)' +
-                                '<br>Bedrock port: 19132 (default)';
-                        }
-                    } else {
-                        statusElement.innerHTML = 'Error';
+                        statusElement.innerHTML = 'Online: ' + playersOnline + ' players | ' + (jsonResponse.server.name || 'N/A');
                         infoElement.innerHTML = 'IP Address: ' + ip +
                             '<br>Java port: 25565 (default)' +
                             '<br>Bedrock port: 19132 (default)';
+                    } else {
+                        statusElement.innerHTML = 'Offline';
+                        infoElement.innerHTML = 'IP Address: ' + ip +
+                            '<br>Java port:  25565 (default)' +
+                            '<br>Bedrock port: 19132 (default)';
                     }
-                };
-
-                xhr.onerror = function () {
+                } else {
                     statusElement.innerHTML = 'Error';
                     infoElement.innerHTML = 'IP Address: ' + ip +
                         '<br>Java port: 25565 (default)' +
                         '<br>Bedrock port: 19132 (default)';
-                };
+                }
+            };
 
-                xhr.send();
-            }
+            xhr.onerror = function () {
+                statusElement.innerHTML = 'Error';
+                infoElement.innerHTML = 'IP Address: ' + ip +
+                    '<br>Java port: 25565 (default)' +
+                    '<br>Bedrock port: 19132 (default)';
+            };
 
-            // Initial server status check
+            xhr.send();
+        }
+
+        // Initial server status check
+        updateServerStatus('mc.thecottagesmp.com');
+
+        // Update server status every 5 seconds
+        setInterval(function () {
             updateServerStatus('mc.thecottagesmp.com');
+        }, 15000);
+    </script>
 
-            // Update server status every 5 seconds
-            setInterval(function () {
-                updateServerStatus('mc.thecottagesmp.com');
-            }, 15000);
+</body>
 
-            // Function to change mode
-            function changeMode(mode) {
-                document.body.className = mode;
-            }
-        </script>
-    </body>
 </html>
