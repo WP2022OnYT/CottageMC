@@ -34,7 +34,7 @@
         <div class="info" id="server-info">
             IP Address: mc.thecottagesmp.com
             <br> Java port: 25565 (default)
-            <br> Bedrock port: 19132 (defult)
+            <br> Bedrock port: 19132 (default)
         </div>
     </div>
     <script>
@@ -55,27 +55,27 @@
 
                         statusElement.innerHTML = 'Online: ' + playersOnline + ' players | ' + (jsonResponse.server.name || 'N/A');
                         infoElement.innerHTML = 'IP Address: ' + ip +
-                            '<br>Java port: 25565 (defult)' +
-                            '<br>Bedrock port: 19132 (defult)';
+                            '<br>Java port: 25565 (default)' +
+                            '<br>Bedrock port: 19132 (default)';
                     } else {
                         statusElement.innerHTML = 'Offline';
                         infoElement.innerHTML = 'IP Address: ' + ip +
-                            '<br>Java port:  25565 (defult)' +
-                            '<br>Bedrock port: 19132 (defult)';
+                            '<br>Java port:  25565 (default)' +
+                            '<br>Bedrock port: 19132 (default)';
                     }
                 } else {
                     statusElement.innerHTML = 'Error';
                     infoElement.innerHTML = 'IP Address: ' + ip +
-                        '<br>Java port: 25565 (defult)' +
-                        '<br>Bedrock port: 19132 (defult)';
+                        '<br>Java port: 25565 (default)' +
+                        '<br>Bedrock port: 19132 (default)';
                 }
             };
 
             xhr.onerror = function () {
                 statusElement.innerHTML = 'Error';
                 infoElement.innerHTML = 'IP Address: ' + ip +
-                    '<br>Java port: 25565 (defult)' +
-                    '<br>Bedrock port: 19132 (defult)';
+                    '<br>Java port: 25565 (default)' +
+                    '<br>Bedrock port: 19132 (default)';
             };
 
             xhr.send();
