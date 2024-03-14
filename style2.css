@@ -17,8 +17,9 @@ header {
     text-align: left;
     z-index: 1000;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-    padding: 10px 10px;
+    padding: 10px 0; /* Adjusted padding */
 }
+
 
 .header {
     font-size: 24px;
