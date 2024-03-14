@@ -83,3 +83,15 @@ iframe {
     border: none;
     margin-top: 60px; /* Adjust this value to match the header height */
 }
+
+/* Light mode styles */
+.light {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Dark mode styles */
+.dark {
+    background-color: #333;
+    color: #f9f9f9;
+}
