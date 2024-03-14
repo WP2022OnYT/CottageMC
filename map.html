@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cottage SMP | Web</title>
+    <style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #fff;
+    margin: 0;
+}
+
+.container {
+    width: 100%; /* Set the width to 100% */
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: #333;
+    text-align: left;
+    z-index: 1000;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px 10px
+}
+
+.header {
+    font-size: 24px;
+    margin-bottom: 0;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.header:hover {
+    color: #bbb;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: #bbb;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    padding: 5px 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    left: 0;
+    border-radius: 4px;
+    padding: 10px 10px;
+}
+
+.dropdown-content a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+    padding: 10px 10px;
+}
+
+.dropdown-content a:hover {
+    background-color: #555;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+iframe {
+    margin-top: 60px;
+    width: 100%;
+    height: calc(100vh - 60px);
+    border: none;
+}
+
+    </style>
+    <link rel="icon" type="image/ico" href="icon.ico">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header">
+                <div class="dropdown">
+                    <span>The Cottage SMP</span>
+                    <div class="dropdown-content">
+                        <a href="/TheCottageSMP/index.html">Main page</a>
+                        <a href="/TheCottageSMP/tos.html">TOS</a>
+                        <a href="/TheCottageSMP/rules.html">Rules</a>
+                        <a href="/TheCottageSMP/vote.html">Vote</a>
+                        <a href="/TheCottageSMP/socials.html">Socials</a>
+                        <a href="/TheCottageSMP/map.html">Server map</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <iframe src="http://mc.thecottagesmp.com/" width="100%" height="100%" frameborder="20px"></iframe>
+    </div>
+</body>
+
+</html>
