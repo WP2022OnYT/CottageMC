@@ -7,21 +7,6 @@
     <title>The Cottage SMP</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/ico" href="icon.ico">
-    <style>
-        .scrolling-images {
-            width: 100%;
-            overflow-x: auto;
-            white-space: nowrap;
-            margin-bottom: 20px; /* Add margin to the bottom */
-        }
-        
-        .scrolling-images img {
-            width: auto;
-            height: 200px; /* Set the height as needed */
-            margin: 10px; /* Adjust the margin as needed */
-            display: inline-block;
-        }
-    </style>
 </head>
 
 <body>
@@ -42,18 +27,18 @@
             </div>
         </header>
 
+        <br><br>
         <div class="status" id="server-status">Loading...</div>
         <div class="info" id="server-info">
             IP Address: mc.thecottagesmp.com
             <br> Java port: 25565 (default)
             <br> Bedrock port: 19132 (default)
         </div>
-
-        <div class="scrolling-images" id="image-container">
-            <!-- Images will be dynamically added here -->
-        </div>
+        <br><br>
+        <img src="content/AI bear.png" alt="Description of the image" class="image">
+	<img src="content/AI bear.png" alt="Description of the image" class="image">
+	<!-- Add more as necessary -->
     </div>
-
     <script>
         function updateServerStatus(ip) {
             var statusElement = document.getElementById('server-status');
@@ -98,30 +83,8 @@
             xhr.send();
         }
 
-        // Function to load images dynamically
-        function loadImages() {
-            var imageContainer = document.getElementById('image-container');
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'content/', true); // Fetch the 'content' directory
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    var files = xhr.responseText.split('\n'); // Split the response text into an array of file names
-                    files.forEach(function (file) {
-                        if (file.trim() !== '') { // Ignore empty lines
-                            var img = document.createElement('img');
-                            img.src = 'content/' + file.trim(); // Set the image source
-                            img.alt = file.trim(); // Set alt attribute
-                            imageContainer.appendChild(img); // Append the image to the container
-                        }
-                    });
-                }
-            };
-            xhr.send();
-        }
-
-        // Initial server status check and image loading
+        // Initial server status check
         updateServerStatus('mc.thecottagesmp.com');
-        loadImages();
 
         // Update server status every 5 seconds
         setInterval(function () {
