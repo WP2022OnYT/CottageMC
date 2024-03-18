@@ -7,6 +7,28 @@
     <title>The Cottage SMP</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/ico" href="icon.ico">
+    <style>
+        .scrolling-lines {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .scrolling-line {
+            display: inline-block;
+            animation: scroll 10s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .image {
+            margin: 0 10px; /* Adjust spacing between images */
+            vertical-align: middle;
+            max-height: 100px; /* Adjust image height as needed */
+        }
+    </style>
 </head>
 
 <body>
@@ -35,6 +57,7 @@
             <br> Bedrock port: 19132 (default)
         </div>
         <br>
+        <br>
         <div class="scrolling-lines">
             <div class="scrolling-line" id="scrolling-line-1"></div>
             <div class="scrolling-line" id="scrolling-line-2"></div>
@@ -55,6 +78,7 @@
                         imgElement.classList.add('image');
                         line.appendChild(imgElement);
                     });
+                    line.innerHTML += line.innerHTML; // Duplicate images for infinite scrolling
                     line.classList.add('scrolling');
                 });
         }
