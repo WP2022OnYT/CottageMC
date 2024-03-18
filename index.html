@@ -8,25 +8,17 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/ico" href="icon.ico">
     <style>
-        .scrolling-lines {
-            overflow: hidden;
+        .scrolling-images {
+            width: 100%;
+            overflow-x: auto;
             white-space: nowrap;
         }
-
-        .scrolling-line {
+        
+        .scrolling-images img {
+            width: auto;
+            height: 200px; /* Set the height as needed */
+            margin: 10px; /* Adjust the margin as needed */
             display: inline-block;
-            animation: scroll 10s linear infinite;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        .image {
-            margin: 0 10px; /* Adjust spacing between images */
-            vertical-align: middle;
-            max-height: 100px; /* Adjust image height as needed */
         }
     </style>
 </head>
@@ -48,45 +40,24 @@
                 </div>
             </div>
         </header>
-        <br>
-        <br>
+
+        <br><br>
         <div class="status" id="server-status">Loading...</div>
         <div class="info" id="server-info">
             IP Address: mc.thecottagesmp.com
             <br> Java port: 25565 (default)
             <br> Bedrock port: 19132 (default)
         </div>
-        <br>
-        <br>
-        <div class="scrolling-lines">
-            <div class="scrolling-line" id="scrolling-line-1"></div>
-            <div class="scrolling-line" id="scrolling-line-2"></div>
-            <div class="scrolling-line" id="scrolling-line-3"></div>
+        <br><br>
+        <div class="scrolling-images">
+            <img src="content/image1.jpg" alt="Image 1">
+            <img src="content/image2.jpg" alt="Image 2">
+            <img src="content/image3.jpg" alt="Image 3">
+            <!-- Add more images as needed -->
         </div>
     </div>
 
     <script>
-        function loadImages(folderPath, lineId) {
-            const line = document.getElementById(lineId);
-            fetch(folderPath)
-                .then(response => response.text())
-                .then(text => {
-                    const images = text.split('\n').filter(line => line.trim() !== '');
-                    images.forEach(image => {
-                        const imgElement = document.createElement('img');
-                        imgElement.src = image.trim();
-                        imgElement.classList.add('image');
-                        line.appendChild(imgElement);
-                    });
-                    line.innerHTML += line.innerHTML; // Duplicate images for infinite scrolling
-                    line.classList.add('scrolling');
-                });
-        }
-
-        loadImages('content/line1.txt', 'scrolling-line-1');
-        loadImages('content/line2.txt', 'scrolling-line-2');
-        loadImages('content/line3.txt', 'scrolling-line-3');
-
         function updateServerStatus(ip) {
             var statusElement = document.getElementById('server-status');
             var infoElement = document.getElementById('server-info');
@@ -138,6 +109,8 @@
             updateServerStatus('mc.thecottagesmp.com');
         }, 15000);
     </script>
+
 </body>
 
 </html>
+
