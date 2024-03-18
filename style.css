@@ -14,7 +14,7 @@ body {
 }
 
 .container div {
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 header {
@@ -88,4 +88,9 @@ iframe {
     width: 100%;
     height: calc(100vh - 60px);
     border: none;
+}
+
+.image {
+    width: 200px;
+    height: auto;
 }
