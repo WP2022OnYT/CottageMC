@@ -12,6 +12,7 @@
             width: 100%;
             overflow-x: auto;
             white-space: nowrap;
+            margin-bottom: 20px; /* Add margin to the bottom */
         }
         
         .scrolling-images img {
@@ -41,19 +42,15 @@
             </div>
         </header>
 
-        <br><br>
         <div class="status" id="server-status">Loading...</div>
         <div class="info" id="server-info">
             IP Address: mc.thecottagesmp.com
             <br> Java port: 25565 (default)
             <br> Bedrock port: 19132 (default)
         </div>
-        <br><br>
-        <div class="scrolling-images">
-            <img src="content/image1.jpg" alt="Image 1">
-            <img src="content/image2.jpg" alt="Image 2">
-            <img src="content/image3.jpg" alt="Image 3">
-            <!-- Add more images as needed -->
+
+        <div class="scrolling-images" id="image-container">
+            <!-- Images will be dynamically added here -->
         </div>
     </div>
 
@@ -101,8 +98,30 @@
             xhr.send();
         }
 
-        // Initial server status check
+        // Function to load images dynamically
+        function loadImages() {
+            var imageContainer = document.getElementById('image-container');
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'content/', true); // Fetch the 'content' directory
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var files = xhr.responseText.split('\n'); // Split the response text into an array of file names
+                    files.forEach(function (file) {
+                        if (file.trim() !== '') { // Ignore empty lines
+                            var img = document.createElement('img');
+                            img.src = 'content/' + file.trim(); // Set the image source
+                            img.alt = file.trim(); // Set alt attribute
+                            imageContainer.appendChild(img); // Append the image to the container
+                        }
+                    });
+                }
+            };
+            xhr.send();
+        }
+
+        // Initial server status check and image loading
         updateServerStatus('mc.thecottagesmp.com');
+        loadImages();
 
         // Update server status every 5 seconds
         setInterval(function () {
@@ -113,4 +132,3 @@
 </body>
 
 </html>
-
